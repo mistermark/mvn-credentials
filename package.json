@@ -4,7 +4,7 @@
   "description": "Fetching the credentials used for Maven repositories",
   "main": "index.js",
   "scripts": {
-    "test": "test.js"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
