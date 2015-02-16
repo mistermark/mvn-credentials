@@ -13,7 +13,7 @@
     "repository"
   ],
   "author": "Mark de Jong <mark@markdejong.com> (http://www.markdejong.com)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mistermark/mvn-credentials/issues"
   },
