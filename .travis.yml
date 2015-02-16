@@ -1,5 +1,12 @@
 language: node_js
 node_js:
-  - 0.6
-  - 0.8
-  - 0.9
+- 0.6
+- 0.8
+- 0.9
+deploy:
+  provider: npm
+  email: mark@markdejong.com
+  api_key:
+    secure: X/EPovzBf5wGrznidBM8nOB2tXeWO1GegF7etTxg6S1bhE+NcjXZuG/kQqXO6tET3rY4kuSGQ/Xfq6H7FNwiPfCzCGhu1HOpsyLFjYnjcDW7O+I5lRNEQz5H6o9woMePC8abJfvZEyZBEnJCmTGihHGXVt74lp92fpl5PuDvMmM=
+  on:
+    tags: true
