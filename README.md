@@ -2,7 +2,7 @@
 
 This module gets your Maven credentials from the `~/.m2` folder on your system, if it exists.
 
-[![Build Status](https://secure.travis-ci.org/mistermark/mvn-credentials.svg)](http://travis-ci.org/mistermark/mvn-credentials)
+[![Build Status](https://travis-ci.org/mistermark/mvn-credentials.svg?branch=master)](https://travis-ci.org/mistermark/mvn-credentials)
 
 ## Installation
 
