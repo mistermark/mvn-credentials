@@ -1,0 +1,30 @@
+{
+  "name": "mvn-credentials",
+  "version": "0.1",
+  "description": "Fetching the credentials used for Maven repositories",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mistermark/mvn-credentials"
+  },
+  "keywords": [
+    "maven",
+    "credentials",
+    "repository"
+  ],
+  "author": "Mark de Jong <mark@markdejong.com> (http://www.markdejong.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mistermark/mvn-credentials/issues"
+  },
+  "homepage": "https://github.com/mistermark/mvn-credentials",
+  "dependencies": {
+    "fs": "0.0.2",
+    "osenv": "^0.1.0",
+    "path": "^0.11.14",
+    "xml2js": "^0.4.5"
+  }
+}
