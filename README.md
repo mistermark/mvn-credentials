@@ -10,8 +10,15 @@ Install the module in the usual way
 
 ## Quick Start (tl;dr)
 
-    var mvnCredentials = require('mvn-credentials')
-      , request = require('request');
+```
+$ npm install mvn-credentials request
+```
+
+    var mvnCredentials = require('mvn-credentials'),
+        request = require('request'),
+        util = require('util');
+
+    var credentials = mvnCredentials.fetch();
 
     request({
         auth: {
@@ -21,7 +28,7 @@ Install the module in the usual way
         url: 'www.google.com'
     }, function(err, res, body) {
 
-      if(err) return util.err(err);
+      if(err) return util.error(err);
 
       console.log(body);
 
