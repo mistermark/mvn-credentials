@@ -3,9 +3,6 @@
   "version": "0.2.0",
   "description": "Fetching the credentials used for Maven repositories",
   "main": "index.js",
-  "scripts": {
-    "test": "node test.js"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/mistermark/mvn-credentials.git"
