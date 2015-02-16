@@ -20,8 +20,8 @@
   "homepage": "https://github.com/mistermark/mvn-credentials",
   "dependencies": {
     "fs": "0.0.2",
-    "osenv": "^0.1.0",
-    "path": "^0.11.14",
-    "xml2js": "^0.4.5"
+    "osenv": ">=0.1.0",
+    "path": ">=0.11.14",
+    "xml2js": ">=0.4.5"
   }
 }
