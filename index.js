@@ -10,7 +10,8 @@ var fetch = exports.fetch = function(callback) {
 
   parseString(xmlData, {explicitArray: false}, function (err, xml) {
 
-    var server = (xml.settings.servers.server[0] || xml.settings.servers.server);
+    var servers = xml.settings.servers;
+    var server = (servers.server[0] || servers.server);
     credentials.username = server.username;
     credentials.password = server.password;
 
