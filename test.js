@@ -4,20 +4,19 @@ var mvnCredentials = require('./'),
 
 var promise = mvnCredentials.fetch();
 promise
-    .then(function (){
-        console.log(arguments);
+    .then(function (credentials){
+        request({
+            auth: {
+              'user': credentials.username,
+              'pass': credentials.password
+            },
+            url: 'www.google.com'
+        }, function(err, res, body) {
+
+          if(err) return util.error(err);
+
+          console.log(body);
+
+        });
     });
-//var credentials = mvnCredentials.fetch();
-//request({
-//    auth: {
-//      'user': credentials.username,
-//      'pass': credentials.password
-//    },
-//    url: 'www.google.com'
-//}, function(err, res, body) {
-//
-//  if(err) return util.error(err);
-//
-//  console.log(body);
-//
-//});
+
