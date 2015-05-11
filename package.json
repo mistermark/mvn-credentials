@@ -20,13 +20,13 @@
   "homepage": "https://github.com/mistermark/mvn-credentials",
   "dependencies": {
     "fs": "0.0.2",
-    "graceful-fs": "^3.0.6",
-    "mout": "^0.11.0",
+    "graceful-fs": "3.0.6",
+    "mout": "0.11.0",
     "osenv": ">=0.1.0",
-    "p-throttler": "^0.1.1",
+    "p-throttler": "0.1.1",
     "path": ">=0.11.14",
-    "q": "^1.4.0",
-    "which": "^1.1.1",
+    "q": "1.4.0",
+    "which": "1.1.1",
     "xml2js": ">=0.4.5"
   }
 }
