@@ -7,7 +7,7 @@ var path = require('path'),
     extractPassword = require('./lib/utils/extractPassword'),
     parseString = require('xml2js').parseString;
 
-var fetch = exports.fetch = function(decode) {
+var fetch = exports.fetch = function() {
   var deferred = Q.defer();
   var m2Path = path.join(osenv.home(), '.m2');
   var settingsXmlPath = path.join(m2Path, 'settings.xml');
