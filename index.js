@@ -6,12 +6,13 @@ var path = require('path'),
 var fetch = exports.fetch = function(callback) {
 
   var credentials = {};
-  var xmlData = fs.readFileSync(path.join(osenv.home(), '.m2') + '/settings.xml');//, function(err, data) {
+  var xmlData = fs.readFileSync(path.join(osenv.home(), '.m2') + '/settings.xml');
 
   parseString(xmlData, {explicitArray: false}, function (err, xml) {
 
-    credentials.username = xml.settings.servers.server[0].username;
-    credentials.password = xml.settings.servers.server[0].password;
+    var server = (xml.settings.servers.server[0] || xml.settings.servers.server);
+    credentials.username = server.username;
+    credentials.password = server.password;
 
   });
 
