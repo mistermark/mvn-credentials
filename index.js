@@ -13,7 +13,7 @@ var fetch = exports.fetch = function() {
   var settingsXmlPath = path.join(m2Path, 'settings.xml');
   var settingsSecurityXmlPath = path.join(m2Path, 'settings-security.xml');
 
-  cmd('./lib/settings-decoder/bin/settings-decoder', ['-f', settingsXmlPath, '-s', settingsSecurityXmlPath])
+  cmd(__dirname + '/lib/settings-decoder/bin/settings-decoder', ['-f', settingsXmlPath, '-s', settingsSecurityXmlPath])
     .then(function (stdout){
         var username = extractUser(stdout[0]);
         var password = extractPassword(stdout[0]);
