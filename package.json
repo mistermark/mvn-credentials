@@ -28,5 +28,8 @@
     "q": "1.4.0",
     "which": "1.1.1",
     "xml2js": ">=0.4.5"
+  },
+  "devDependencies": {
+    "request": "^2.58.0"
   }
 }
