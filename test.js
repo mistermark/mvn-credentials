@@ -1,19 +1,24 @@
-var mvnCredentials = require('mvn-credentials'),
-    request = require('request'),
-    util = require('util');
+var mvnCredentials = require('./');
+var request = require('request');
 
-var credentials = mvnCredentials.fetch();
+var promise = mvnCredentials.fetch();
+promise
+  .then(function (credentials) {
+    console.log(credentials);
 
-request({
-    auth: {
-      'user': credentials.username,
-      'pass': credentials.password
-    },
-    url: 'www.google.com'
-}, function(err, res, body) {
+    request({
+      auth: {
+        'user': credentials.username,
+        'pass': credentials.password
+      },
+      url: 'http://www.google.com'
+    }, function (err, res, body) {
+      if (err) return console.error(err);
 
-  if(err) return util.error(err);
+      console.log(body);
 
-  console.log(body);
+    });
+  }).fail(function (err) {
+    throw new Error(err);
+  });
 
-});

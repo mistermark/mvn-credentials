@@ -8,7 +8,9 @@ This module gets your Maven credentials from the `~/.m2` folder on your system, 
 
 Install the module in the usual way
 
-    $ npm install mvn-credentials
+```
+$ npm install mvn-credentials
+```
 
 ## Quick Start (tl;dr)
 
@@ -16,25 +18,30 @@ Install the module in the usual way
 $ npm install mvn-credentials request
 ```
 
-    var mvnCredentials = require('mvn-credentials'),
-        request = require('request'),
-        util = require('util');
+```
+var request = require('request');
+var mvnCredentials = require('mvn-credentials');
 
-    var credentials = mvnCredentials.fetch();
-
+var promise = mvnCredentials.fetch();
+promise
+  .then(function (credentials) {
     request({
-        auth: {
-          'user': credentials.username,
-          'pass': credentials.password
-        },
-        url: 'www.google.com'
-    }, function(err, res, body) {
-
-      if(err) return util.error(err);
+      auth: {
+        'user': credentials.username,
+        'pass': credentials.password
+      },
+      url: 'http://www.google.com'
+    }, function (err, res, body) {
+      if (err) return console.error(err);
 
       console.log(body);
 
     });
+  }).fail(function (err) {
+    throw new Error(err);
+  });
+```
+
 
 ## Usage
 
@@ -47,10 +54,19 @@ fill in the details by using the following markup:
 
     var credentials = repoCredentials.fetch();
 
+`repoCredentials.fetch()` will return a Promise with credentials payload:
+
+```
+{
+  username: "username",
+  password: "password"
+}
+```
+
 In your `http.request` you can use the credentials in the headers
 
     var options = {
-      hostname: 'www.google.com',
+      hostname: 'http://www.google.com',
       port: '80',
       path: '/upload',
       method: 'POST',
