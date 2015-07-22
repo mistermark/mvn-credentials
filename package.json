@@ -1,6 +1,6 @@
 {
   "name": "mvn-credentials",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Fetching the credentials used for Maven repositories",
   "main": "index.js",
   "repository": {
