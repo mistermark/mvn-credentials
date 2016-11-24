@@ -5,7 +5,46 @@ var Q = require('q');
 var osenv = require('osenv');
 var extractUser = require('./lib/utils/extractUser');
 var extractPassword = require('./lib/utils/extractPassword');
+var normaliseSettings = require('./lib/utils/normaliseSettings');
 var parseString = require('xml2js').parseString;
+
+var getRepoId = function(repoName, profiles) {
+  // For each profile
+  for (var i = 0; i < profiles.length; i++) {
+    var profile = profiles[i];
+    for (var j = 0; j < profile.repositories.length; j++) {
+      var repo = profile.repositories[j];
+      if (repo.url.indexOf(repoName) > -1) {
+        return repo.id;
+      }
+    }
+  }
+};
+
+var firstRepoId = function(profiles) {
+  var firstProfile = profiles[0];
+  if (!firstProfile) {
+    return;
+  }
+
+  var firstRepo = firstProfile.repositories[0];
+  if (!firstRepo) {
+    return;
+  }
+
+  return firstRepo.id;
+};
+
+var getRepoCredentials = function(repoId, servers) {
+  for (var i = 0; i < servers.length; i++) {
+    if (servers[i].id === repoId) {
+      return {
+        username: servers[i].username,
+        password: servers[i].password
+      };
+    }
+  }
+};
 
 exports.fetch = function(repoName) {
   var deferred = Q.defer();
@@ -34,44 +73,17 @@ exports.fetch = function(repoName) {
         return;
       }
 
-      var repo = {};
+      var settings = normaliseSettings(xml.settings);
+      var repoId = getRepoId(repoName, settings.profiles) || firstRepoId(settings.profiles);
 
-      var getRepoId = function(cb) {
-        for (var i = 0; i < xml.settings.profiles.profile.repositories.repository.length; i++) {
-          if(xml.settings.profiles.profile.repositories.repository[i].url.indexOf(repoName) > -1) {
-            if(cb) cb(xml.settings.profiles.profile.repositories.repository[i].id);
-          }
+      if (repoId) {
+        var credentials = getRepoCredentials(repoId, settings.servers);
+        if (credentials) {
+          return deferred.resolve(credentials)
         }
-      };
-      var getRepoCredentials = function(cb){
-        for (var i = 0; i < xml.settings.servers.server.length; i++) {
-          // console.log(xml.settings.servers.server[i]);
-          if(xml.settings.servers.server[i].id === repo.id) {
-            if(cb) cb({
-              "username": xml.settings.servers.server[i].username,
-              "password": xml.settings.servers.server[i].password
-            });
-          }
-        }
-      };
-
-      if(xml.settings && xml.settings.profiles && xml.settings.profiles.profile.length > 0) {
-        getRepoId(function(res) {
-          repo.id = res;
-        });
-      }
-      else if (xml.settings && xml.settings.servers && xml.settings.servers.server.length > 0) {
-        getRepoCredentials(function(res) {
-          deferred.resolve({
-            username: res.username,
-            password: res.password
-          });
-        });
-      }
-      else {
-        deferred.reject('No credentials found.');
       }
 
+      deferred.reject('No credentials found.');
     });
   } else {
     deferred.reject('No maven configuration found.');
