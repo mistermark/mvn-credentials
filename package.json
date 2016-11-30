@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/mistermark/mvn-credentials",
   "dependencies": {
-    "fs": "0.0.2",
     "graceful-fs": "3.0.6",
     "mout": "0.11.0",
     "osenv": ">=0.1.0",
